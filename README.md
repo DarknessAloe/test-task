@@ -9,7 +9,10 @@
 - Изменение ширины колонок
 - Детальная информация о пользователе
 
+[ссылка на тз] (https://darknessaloe.github.io/test-task/)
+
 ## Запуск
 ```bash
 npm install
 npm start
+
