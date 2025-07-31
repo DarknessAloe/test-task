@@ -1,4 +1,3 @@
-// src/components/UserTable.js
 import React, { useState, useEffect, useCallback } from 'react';
 import UserModal from './UserModal';
 import TableHeader from './TableHeader';
@@ -38,12 +37,11 @@ const UserTable = () => {
   const itemsPerPage = 5;
   
   const handleAgeChange = (e) => {
-    // Оставляем только цифры
     const value = e.target.value.replace(/\D/g, '');
     handleFilterChange('age', value);
   };
   
-  // Определение колонок таблицы
+
   const columns = [
     { key: 'lastName', label: 'Фамилия' },
     { key: 'firstName', label: 'Имя' },
@@ -56,7 +54,7 @@ const UserTable = () => {
     { key: 'city', label: 'Город' }
   ];
   
-  // Загрузка пользователей
+
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -76,7 +74,7 @@ const UserTable = () => {
     getUsers();
   }, []);
   
-  // Применение фильтров
+
   useEffect(() => {
     let result = [...users];
     
@@ -114,7 +112,7 @@ const UserTable = () => {
     setCurrentPage(1);
   }, [filters, users]);
   
-  // Сортировка данных
+
   const requestSort = (key) => {
     let direction = 'asc';
     
@@ -128,7 +126,7 @@ const UserTable = () => {
     setSortConfig({ key, direction });
   };
   
-  // Применение сортировки
+
   const getSortedData = () => {
     if (!sortConfig.key) return filteredUsers;
     
@@ -143,7 +141,7 @@ const UserTable = () => {
     });
   };
   
-  // Обработчик изменения фильтров
+
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({
       ...prev,
@@ -151,13 +149,13 @@ const UserTable = () => {
     }));
   };
   
-  // Обработчик открытия модального окна
+
   const handleRowClick = (user) => {
     setSelectedUser(user);
     setIsModalOpen(true);
   };
   
-  // Обработчик изменения ширины колонки
+
   const startResize = (column, e) => {
     setResizing({
       active: true,
@@ -167,7 +165,7 @@ const UserTable = () => {
     });
   };
   
-  // Обработчик перемещения при изменении ширины
+
   const handleResize = useCallback((e) => {
         if (resizing.active) {
             const diffX = e.clientX - resizing.startX;
@@ -182,12 +180,12 @@ const UserTable = () => {
         }
     }, [resizing]);
 
-    // Остановка изменения ширины
+
     const stopResize = useCallback(() => {
         setResizing({ active: false, column: null, startX: 0, startWidth: 0 });
     }, []);
   
-  // Добавляем обработчики событий для изменения ширины колонок
+
   useEffect(() => {
         window.addEventListener('mousemove', handleResize);
         window.addEventListener('mouseup', stopResize);
@@ -198,7 +196,7 @@ const UserTable = () => {
         };
     }, [handleResize, stopResize]);
   
-  // Пагинация
+
   const sortedData = getSortedData();
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
