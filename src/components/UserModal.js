@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 const UserModal = ({ user, onClose }) => {
-  // Обработчик для закрытия по клавише Escape
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
@@ -18,7 +17,7 @@ const UserModal = ({ user, onClose }) => {
 
   if (!user) return null;
   
-  // Обработчик клика на фон
+
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
